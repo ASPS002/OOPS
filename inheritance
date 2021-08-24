@@ -1,0 +1,314 @@
+//single inheritance
+// C++ program to explain
+// Single inheritance
+#include <iostream>
+using namespace std;
+
+// base class
+class Vehicle
+{
+public:
+    Vehicle()
+    {
+        cout << "This is a Vehicle" << endl;
+    }
+    ~Vehicle()
+    {
+        cout << "This is a Vehicle" << endl;
+    }
+};
+
+// sub class derived from a single base classes
+class Car : public Vehicle
+{
+public:
+    Car()
+    {
+        cout << "This is a car" << endl;
+    }
+    ~Car()
+    {
+        cout << "This is a car" << endl;
+    }
+
+};
+
+// main function
+int main()
+{
+    // creating object of sub class will
+    // invoke the constructor of base classes
+    Car obj;
+    return 0;
+}
+/*This is a Vehicle
+This is a car
+This is a car
+This is a Vehicle*/
+*****************************************************************************************************
+//multiple inheritance
+// C++ program to explain
+// Single inheritance
+#include <iostream>
+using namespace std;
+
+// base class
+class Vehicle
+{
+public:
+    Vehicle()
+    {
+        cout << "This is a Vehicle" << endl;
+    }
+    ~Vehicle()
+    {
+        cout << "This is a Vehicle" << endl;
+    }
+};
+class fourwheeler
+{
+public:
+    fourwheeler()
+    {
+        cout << "This is a fourwheeler" << endl;
+    }
+    ~fourwheeler()
+    {
+        cout << "This is a fourwheeler" << endl;
+    }
+};
+
+// sub class derived from a multiple base classes
+class Car : public Vehicle, public fourwheeler
+{
+public:
+    Car()
+    {
+        cout << "This is a car" << endl;
+    }
+    ~Car()
+    {
+        cout << "This is a car" << endl;
+    }
+};
+
+// main function
+int main()
+{
+    // creating object of sub class will
+    // invoke the constructor of base classes
+    Car obj;
+    return 0;
+}
+*********************************************************************************************
+// C++ program to implement
+// Multilevel Inheritance
+#include <iostream>
+using namespace std;
+
+// base class
+class Vehicle
+{
+public:
+	Vehicle()
+	{
+	cout << "This is a Vehicle" << endl;
+	}
+};
+
+// first sub_class derived from class vehicle
+class fourWheeler: public Vehicle
+{ public:
+	fourWheeler()
+	{
+	cout<<"Objects with 4 wheels are fourwheeler"<<endl;
+	}
+};
+// sub class derived from the derived base class fourWheeler
+class Car: public fourWheeler{
+public:
+	Car()
+	{
+	cout<<"Car has 4 Wheels"<<endl;
+	}
+};
+
+// main function
+int main()
+{
+	//creating object of sub class will
+	//invoke the constructor of base classes
+	Car obj;
+	return 0;
+}
+This is a Vehicle
+Objects with 4 wheels are fourwheeler
+Car has 4 Wheels
+*******************************************************************************************
+// C++ program to implement
+// Hierarchical Inheritance
+#include <iostream>
+using namespace std;
+
+// base class
+class Vehicle
+{
+public:
+	Vehicle()
+	{
+	cout << "This is a Vehicle" << endl;
+	}
+};
+
+
+// first sub class
+class Car: public Vehicle
+{
+
+};
+
+// second sub class
+class Bus: public Vehicle
+{
+	
+};
+
+// main function
+int main()
+{
+	// creating object of sub class will
+	// invoke the constructor of base class
+	Car obj1;
+	Bus obj2;
+	return 0;
+}
+//This is a Vehicle
+//This is a Vehicle
+*******************************************************************************************
+//hybrid inheritance
+// C++ program to explain
+// Single inheritance
+#include <iostream>
+using namespace std;
+
+// base class
+class Vehicle
+{
+public:
+    Vehicle()
+    {
+        cout << "This is a Vehicle" << endl;
+    }
+    ~Vehicle()
+    {
+        cout << "This is a Vehicle" << endl;
+    }
+};
+class fourwheeler
+{
+public:
+    fourwheeler()
+    {
+        cout << "This is a fourwheeler" << endl;
+    }
+    ~fourwheeler()
+    {
+        cout << "This is a fourwheeler" << endl;
+    }
+};
+
+// sub class derived from a multiple base classes
+class Car : public Vehicle, public fourwheeler
+{
+public:
+    Car()
+    {
+        cout << "This is a car" << endl;
+    }
+    ~Car()
+    {
+        cout << "This is a car" << endl;
+    }
+};
+//second subclass
+class Bus : public Vehicle
+{
+public:
+    Bus()
+    {
+        cout << "This is a Bus" << endl;
+    }
+    ~Bus()
+    {
+        cout << "This is a Bus" << endl;
+    }
+};
+
+// main function
+int main()
+{
+    // creating object of sub class will
+    // invoke the constructor of base classes
+    Car obj;
+    Bus obj2;
+    return 0;
+}
+// This is a Vehicle    
+// This is a fourwheeler
+// This is a car        
+// This is a Vehicle    
+// This is a Bus        
+// This is a Bus
+// This is a Vehicle
+// This is a car
+// This is a fourwheeler
+// This is a Vehicle
+************************************************************************************************
+//multipath inheritance
+// C++ program demonstrating ambiguity in Multipath
+// Inheritance
+
+#include <conio.h>
+#include <iostream.h>
+class ClassA {
+public:
+	int a;
+};
+
+class ClassB : public ClassA {
+public:
+	int b;
+};
+class ClassC : public ClassA {
+public:
+	int c;
+};
+
+class ClassD : public ClassB, public ClassC {
+public:
+	int d;
+};
+
+void main()
+{
+
+	ClassD obj;
+
+	// obj.a = 10;				 //Statement 1, Error
+	// obj.a = 100;				 //Statement 2, Error
+
+	obj.ClassB::a = 10; // Statement 3
+	obj.ClassC::a = 100; // Statement 4
+
+	obj.b = 20;
+	obj.c = 30;
+	obj.d = 40;
+
+	cout << "\n A from ClassB : " << obj.ClassB::a;
+	cout << "\n A from ClassC : " << obj.ClassC::a;
+
+	cout << "\n B : " << obj.b;
+	cout << "\n C : " << obj.c;
+	cout << "\n D : " << obj.d;
+}
+****************************************************************************************************

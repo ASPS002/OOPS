@@ -1,0 +1,284 @@
+
+// #include <iostream>
+// using namespace std;
+
+// class complex
+// {
+// private:
+//     int real, imag;
+
+// public:
+//     complex(){}
+//     complex(int r, int i) { real = r, imag = i; }
+//     void print()
+//     {
+//         cout << real << " + i" << imag << endl;
+//     }
+//     complex operator+(complex const &obj)
+//     {
+//         complex res;
+//         res.real = real + obj.real;
+//         res.imag = imag + obj.imag;
+//         cout<<real<<" "<<imag<<" "<<"c1 parameters "<<endl;
+//         return res;
+//     }
+// };
+*********************************************************************
+// class complex
+// {
+// private:
+//     int real, imag;
+
+// public:
+//     complex() {}
+//     complex(int r, int i) { real = r, imag = i; }
+//     void print()
+//     {
+//         cout << real << " + i" << imag << endl;
+//     }
+//     friend complex operator+(complex const c1, complex const c2);
+// };
+// complex operator+(complex const c1, complex const c2)
+// {
+//     return complex(c1.real + c2.real, c1.imag + c2.imag);
+// }
+int main()
+{
+    complex c1(2, 3), c2(4, 5);
+    complex c3 = c1 + c2;
+    c3.print();
+}
+**************************************************************************
+#include <iostream>
+using namespace std;
+class Fraction
+{
+    int num, den;
+public:
+    Fraction(int n,  int d) { num = n; den = d; }
+  
+    // conversion operator: return float value of fraction
+    operator float() const {
+        return float(num) / float(den);
+    }
+};
+  
+int main() {
+    Fraction f(2, 5);
+    float val = f;
+    cout << val;
+    return 0;
+}
+// Conversion Operator: We can also write conversion operators that can be used to convert one type to another type.
+
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+#define speed                     \
+	ios_base::sync_with_stdio(0); \
+	cin.tie(0);                   \
+	cout.tie(0);
+#define ll long long
+#define pb push_back
+#define mem1(a) memset(a, -1, sizeof(a))
+#define mem0(a) memset(a, 0, sizeof(a))
+#define setp(x) fixed << setprecision(x)
+#define endl "\n"
+#define mod 1000000007
+#define mod1 998244353
+#define ff first
+#define ss second
+#define MAX 100005
+#define N 500005
+#define INF 10000000000000000
+#define all(v) v.begin(), v.end()
+#define sbit(a) __builtin_popcount(a)
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+typedef pair<ll, ll> pll;
+typedef pair<pll, ll> ppl;
+typedef map<ll, ll> mpll;
+typedef map<vector<ll>, ll> mpvl;
+ll power(ll x, ll y, ll p)
+{
+	ll res = 1;
+
+	x = x % p;
+
+	if (x == 0)
+		return 0;
+	while (y > 0)
+	{
+
+		if (y & 1)
+			res = (res * x) % p;
+
+		y = y >> 1;
+		x = (x * x) % p;
+	}
+
+	return res;
+}
+class complx
+{
+private:
+	int a, b;
+
+public:
+	complx()
+	{
+	}
+	complx(int x, int y)
+	{
+		a = x;
+		b = y;
+	}
+	void setdata(int x, int y)
+	{
+		a = x, b = y;
+	}
+	void getdata()
+	{
+		cout << a << " " << b << endl;
+	}
+	complx add(complx c)
+	{
+
+		return complx(a + c.a, b + c.b);
+	}
+	complx operator+(complx c)
+	{
+		return complx(a + c.a, b + c.b);
+	}
+	complx operator-()
+	{
+		return complx(-a, -b);
+	}
+	
+};
+void solve()
+{
+	complx c1, c2, c3;
+	c1.setdata(2, 3);
+	c2.setdata(4, 5);
+	c3 = c1.add(c2);
+	c3 = c3 + c1 + c2;
+	c3.getdata();
+	c3=-c3;
+	c3.getdata();
+}
+int main()
+{
+	speed;
+	ll kk;
+	kk = 1;
+	// cin >> kk;
+	while (kk--)
+	{
+		solve();
+	}
+}
+*******************************
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+#define speed                     \
+	ios_base::sync_with_stdio(0); \
+	cin.tie(0);                   \
+	cout.tie(0);
+#define ll long long
+#define pb push_back
+#define mem1(a) memset(a, -1, sizeof(a))
+#define mem0(a) memset(a, 0, sizeof(a))
+#define setp(x) fixed << setprecision(x)
+#define endl "\n"
+#define mod 1000000007
+#define mod1 998244353
+#define ff first
+#define ss second
+#define MAX 100005
+#define N 500005
+#define INF 10000000000000000
+#define all(v) v.begin(), v.end()
+#define sbit(a) __builtin_popcount(a)
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+typedef pair<ll, ll> pll;
+typedef pair<pll, ll> ppl;
+typedef map<ll, ll> mpll;
+typedef map<vector<ll>, ll> mpvl;
+ll power(ll x, ll y, ll p)
+{
+	ll res = 1;
+
+	x = x % p;
+
+	if (x == 0)
+		return 0;
+	while (y > 0)
+	{
+
+		if (y & 1)
+			res = (res * x) % p;
+
+		y = y >> 1;
+		x = (x * x) % p;
+	}
+
+	return res;
+}
+class integer
+{
+private:
+	int a;
+
+public:
+	void setdata(int x)
+	{
+		a = x;
+	}
+	void show()
+	{
+		cout << a << endl;
+	}
+	integer operator++()
+	{
+		integer tmp;
+		tmp.a = ++a;
+		return tmp;
+	}
+	integer operator++(int)
+	{
+		integer tmp;
+		tmp.a = a++;
+		return tmp;
+	}
+};
+void solve()
+{
+	integer i1, i2;
+	i1.setdata(2);
+	i2 = ++i1;
+	i1.show();
+	i2.show();
+	i2 = i1++;
+	i1.show();
+	i2.show();
+}
+int main()
+{
+	speed;
+	ll kk;
+	kk = 1;
+	// cin >> kk;
+	while (kk--)
+	{
+		solve();
+	}
+}

@@ -1,0 +1,241 @@
+// C++ program for function overriding
+
+#include <bits/stdc++.h>
+using namespace std;
+
+class base
+{
+public:
+	 virtual void print ()
+	{ cout<< "print base class" <<endl; }
+
+	void show ()
+	{ cout<< "show base class" <<endl; }
+};
+
+class derived:public base
+{
+public:
+	void print () //print () is already virtual function in derived class, we could also declared as virtual void print () explicitly
+	{ cout<< "print derived class" <<endl; }
+
+	void show ()
+	{ cout<< "show derived class" <<endl; }
+};
+
+//main function
+int main()
+{
+	base *bptr;
+	derived d;
+	bptr = &d;
+	
+	//virtual function, binded at runtime (Runtime polymorphism)
+	bptr->print();
+	
+	// Non-virtual function, binded at compile time
+	bptr->show();
+
+	return 0;
+}
+****************************************************************************************
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+#define speed                     \
+	ios_base::sync_with_stdio(0); \
+	cin.tie(0);                   \
+	cout.tie(0);
+#define ll long long
+#define pb push_back
+#define mem1(a) memset(a, -1, sizeof(a))
+#define mem0(a) memset(a, 0, sizeof(a))
+#define setp(x) fixed << setprecision(x)
+#define endl "\n"
+#define mod 1000000007
+#define mod1 998244353
+#define ff first
+#define ss second
+#define MAX 100005
+#define N 500005
+#define INF 10000000000000000
+#define all(v) v.begin(), v.end()
+#define sbit(a) __builtin_popcount(a)
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+typedef pair<ll, ll> pll;
+typedef pair<pll, ll> ppl;
+typedef map<ll, ll> mpll;
+typedef map<vector<ll>, ll> mpvl;
+ll power(ll x, ll y, ll p)
+{
+	ll res = 1;
+
+	x = x % p;
+
+	if (x == 0)
+		return 0;
+	while (y > 0)
+	{
+
+		if (y & 1)
+			res = (res * x) % p;
+
+		y = y >> 1;
+		x = (x * x) % p;
+	}
+
+	return res;
+}
+class A
+{
+public:
+	virtual void f()//because of late binding it will not work//pointer address is considered
+	{
+		cout << "A-class" << endl;
+	}
+};
+class B : public A
+{
+public:
+	void f()
+	{
+		cout << "B-class" << endl;
+	}
+};
+void solve()
+{
+	A o1, *p1;
+	B o2;
+	p1 = &o1;
+	p1 = &o2; //base pointer can point to any of its derived pointer
+	o2.f();
+	p1->f();//sees pointer type not whats it  is pointing to
+}
+int main()
+{
+	speed;
+	ll kk;
+	kk = 1;
+	// cin >> kk;
+	while (kk--)
+	{
+		solve();
+	}
+}
+******************************************************************
+
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+#define speed                     \
+	ios_base::sync_with_stdio(0); \
+	cin.tie(0);                   \
+	cout.tie(0);
+#define ll long long
+#define pb push_back
+#define mem1(a) memset(a, -1, sizeof(a))
+#define mem0(a) memset(a, 0, sizeof(a))
+#define setp(x) fixed << setprecision(x)
+#define endl "\n"
+#define mod 1000000007
+#define mod1 998244353
+#define ff first
+#define ss second
+#define MAX 100005
+#define N 500005
+#define INF 10000000000000000
+#define all(v) v.begin(), v.end()
+#define sbit(a) __builtin_popcount(a)
+template <typename T>
+using ordered_set = tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+typedef pair<ll, ll> pll;
+typedef pair<pll, ll> ppl;
+typedef map<ll, ll> mpll;
+typedef map<vector<ll>, ll> mpvl;
+ll power(ll x, ll y, ll p)
+{
+	ll res = 1;
+
+	x = x % p;
+
+	if (x == 0)
+		return 0;
+	while (y > 0)
+	{
+
+		if (y & 1)
+			res = (res * x) % p;
+
+		y = y >> 1;
+		x = (x * x) % p;
+	}
+
+	return res;
+}
+class A
+{
+public:
+	void f()
+	{
+		cout << 1 << endl;
+	}
+	virtual void f2()
+	{
+		cout << 2 << endl;
+	}
+	virtual void f3()
+	{
+		cout << 3 << endl;
+	}
+	virtual void f4()
+	{
+		cout << 4 << endl;
+	}
+};
+class B : public A
+{
+public:
+	void f()
+	{
+		cout << 5 << endl;
+	}
+	void f2()
+	{
+		cout << 6 << endl;
+	}
+	void f4(int x)
+	{
+		cout << 7 << endl;
+	}
+};
+void solve()
+{
+	A *p, o1;
+	B o2;
+	p = &o2;
+	p->f();	 //LB 1
+	p->f2(); //LB 6
+	p->f3(); //3
+	p->f4(); //4
+	//p->f4(4);//LB//no function found //error
+	o2.f4(4);
+}
+int main()
+{
+	speed;
+	ll kk;
+	kk = 1;
+	// cin >> kk;
+	while (kk--)
+	{
+		solve();
+	}
+}
+****************************************************************************************************************

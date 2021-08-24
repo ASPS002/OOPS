@@ -1,0 +1,94 @@
+/////////////////////deep
+#include <iostream>
+using namespace std;
+
+class dummy
+{
+private:
+    int x, y, *p;
+
+public:
+    dummy()
+    {
+        p = new int;
+    }
+    void setdata(int x1, int y1, int z)
+    {
+        x = x1;
+        y = y1;
+        *p = z;
+    }
+    dummy(dummy &d)
+    {
+        x = d.x;
+        y = d.y;
+        p = new int; //deep copy as object to which p is pointing which resides outside class is also getting copied
+        *p = *(d.p);
+    }
+
+    int getX() { return x; }
+    int getY() { return y; }
+    int getZ() { return *p; }
+};
+
+int main()
+{
+    dummy p1;
+    p1.setdata(2, 3, 4);
+    dummy p2 = p1;
+    p2.setdata(10,20,30);
+    cout << p1.getX() << " " << p1.getY() << " " << p1.getZ() << endl;
+    cout << p2.getX() << " " << p2.getY() << " " << p2.getZ() << endl;
+    return 0;
+}
+2 3 4
+10 20 30
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+shallow
+
+#include <iostream>
+using namespace std;
+
+class dummy
+{
+private:
+    int x, y, *p;
+
+public:
+    dummy()
+    {
+        p = new int;
+    }
+    void setdata(int x1, int y1, int z)
+    {
+        x = x1;
+        y = y1;
+        *p = z;
+    }
+    dummy(dummy &d)
+    {
+        x = d.x;
+        y = d.y;
+        p=(d.p);//shallow copy
+        // p = new int; //deep copy as object to which p is pointing which resides outside class is also getting copied
+        // *p = *(d.p);
+    }
+
+    int getX() { return x; }
+    int getY() { return y; }
+    int getZ() { return *p; }
+};
+
+int main()
+{
+    dummy p1;
+    p1.setdata(2, 3, 4);
+    dummy p2 = p1;
+    p2.setdata(10,20,30);
+    cout << p1.getX() << " " << p1.getY() << " " << p1.getZ() << endl;
+    cout << p2.getX() << " " << p2.getY() << " " << p2.getZ() << endl;
+    return 0;
+}
+2 3 30
+10 20 30
